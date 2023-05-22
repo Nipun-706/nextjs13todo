@@ -1,15 +1,20 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import Form from "../app/addTodoForm"
-import { TodoItem } from './components/server'
+import Todos from '../app/todos'
 
-const page = () => {
-  return (
+
+
+const page = async() =>{
+    return (
+  
     <div className="container">
- 
-<Form/>
-<TodoItem title={"Sample Task"} description={"asdasda"} id={"sampleid"} completed={false}/>
-    </div>
-  )
-}
+      <Form/>
+      <Suspense fallback={<div>Loading ....</div>}>
+      <Todos />
+      </Suspense>
 
-export default page
+   </div>
+  );
+};
+
+export default page;
